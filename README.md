@@ -17,6 +17,27 @@ Or install it yourself as:
     $ gem install stlogger
 
 ## Usage
+``` ruby
+#! /bin/env ruby
+
+require 'stlogger'
+
+module Config
+  module Log
+    def self.logdev
+      '/tmp/test.log'
+    end
+  end
+end
+
+class MyClass
+  def self.run
+    Stlogger::logger.info 'Test log message'
+  end
+end
+
+MyClass.run
+```
 
 ## Development
 
