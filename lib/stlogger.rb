@@ -9,8 +9,22 @@ module Stlogger
   end
 
   def self.logger
-    logdev = defined?(Config::Log.logdev) ? Config::Log.logdev : STDOUT
+    @logger ||= Logger.new(Stlogger.config.logdev)
+  end
 
-    @logger ||= Logger.new(logdev)
+  def self.config
+    @config ||= Config.new
+  end
+
+  def self.configure
+    yield config
+  end
+
+  class Config
+    attr_accessor :logdev
+
+    def initialize
+      @logdev = STDOUT
+    end
   end
 end
