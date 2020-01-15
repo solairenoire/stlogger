@@ -22,23 +22,19 @@ Or install it yourself as:
 
 require 'stlogger'
 
-module Config
-  module Log
-    def self.logdev
-      '/tmp/test.log'
-    end
-  end
+Stlogger.configure do |config|
+  config.logdev = '/tmp/test.log'
 end
 
 class MyClass
   def self.run
-    Stlogger::logger.info 'Test log message'
+    Stlogger.logger.info 'Test log message'
   end
 end
 
 MyClass.run
 ```
-
+STDOUT is a default logging device.
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
